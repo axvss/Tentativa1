@@ -1,0 +1,68 @@
+Package sable ;
+
+Helpers 
+	numero = ['0' .. '9'] ;
+	letra = ['a' .. 'z'] | ['A' .. 'Z'] ;
+	under = '_' ;
+	cr = 13 ;
+	lf = 10 ;
+	tab = 9 ;
+	space = ' ' ;
+	blank = cr + lf |lf;
+	abrec = '/*' ;
+	fechac = '*/' ;
+	inteiro = numero+ ;
+	real = numero+ ',' + numero+;
+	any = ((under|inteiro|real|letra|space)*) ;
+	anysimbol = ('''|'['|']'|','|'.'|'+'|'-'|'>'|'<'|'=');
+	comment = abrec + (any|(blank|anysimbol)*) + fechac ;
+	comentanin = abrec + ((any|blank|comment|anysimbol)*)+ (comment+) + ((any|blank|comment|anysimbol)*) + fechac ;
+	comentlinha = '//' + (any|(abrec|fechac|anysimbol)*) + blank;
+	
+	
+Tokens
+	comentariolinha = comentlinha ;
+	comentarioaninhado = comentanin ;
+	comentariobloco = comment ;
+	string = ''' + ((any|tab)*) + ''' ;
+	inteiro = inteiro ;
+	real = real ;
+	pontvirg = ';' ;
+	tab = tab ;
+	abrec = abrec ;
+	fechac = fechac ;
+	abc = '[' ;
+	fc = ']' ;
+	virg = ',';
+	inicio = 'inicio' ;
+	fim = 'fim' ;
+	int = 'int' ;
+	float = 'float' ;
+	if = 'if' ;
+	char = 'char' ;
+	else = 'else' ;
+	for = 'for' ;
+	then = 'then' ;
+	true = 'true' ;
+	false = 'false' ;
+	caso = 'caso' ;
+	avalie = 'avalie' ;
+	booleano = 'bolleano' ;
+	e = 'e' ;
+	ou = 'ou' ;
+	not = 'not' ;
+	mais = '+' ;
+	menos = '-' ;
+	mult = '*' ;
+	div = '/';
+	operadorlogico = '>' |'<'|'='|'>='|'<>' ;
+	abrechave = '[' ;
+	fechachave = ']' ;
+	id = (under | letra) + (letra | numero | under)* ;
+	spc = space ;
+	blank = blank ;
+
+
+Ignored Tokens
+	blank ;
+	
